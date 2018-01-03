@@ -32,7 +32,7 @@ use Data::Dumper; # FIXME Debug
 my $cgi = CGI->new();
 my ( $template, $borrowernumber, $cookie ) = get_template_and_user(
     {
-        template_name   => '/var/lib/koha/kohadev/plugins/Koha/Plugin/No/Libriotech/Counters/opac/script/counters.tt',
+        template_name   => 'counters.tt',
         query           => $cgi,
         type            => 'opac',
         authnotrequired => 1,

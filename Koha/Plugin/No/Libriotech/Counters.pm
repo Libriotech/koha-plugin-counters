@@ -11,7 +11,7 @@ use C4::Context;
 use C4::Auth;
 
 ## Here we set our plugin version
-our $VERSION = "0.9";
+our $VERSION = "0.9.1";
 
 ## Here is our metadata, some keys are required, some are optional
 our $metadata = {
