@@ -35,7 +35,7 @@ my ( $template, $borrowernumber, $cookie ) = get_template_and_user(
         template_name   => '/var/lib/koha/kohadev/plugins/Koha/Plugin/No/Libriotech/Counters/opac/script/counters.tt',
         query           => $cgi,
         type            => 'opac',
-        authnotrequired => 0,
+        authnotrequired => 1,
     }
 );
 
