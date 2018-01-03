@@ -1,0 +1,64 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Koha counters</title>
+  <link rel="stylesheet" href="/counters/flipclock.css">
+
+  <script src="/opac-tmpl/bootstrap/lib/jquery/jquery.js"></script>
+  <script src="/counters/flipclock.min.js"></script>
+
+</head>
+
+<body>
+
+<table style="margin-left:auto; margin-right:auto;">
+<tr><td><span style="font-size: 300%;">Loans</span></td><td><span class="loans"></span></td></tr>
+<tr><td><span style="font-size: 300%;">Searches</span></td><td><span class="searches"></span></td></tr>
+</table>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        // Set up the counters
+        var loans = $('.loans').FlipClock(0, {
+            clockFace: 'Counter'
+        });
+        var searches = $('.searches').FlipClock(0, {
+            clockFace: 'Counter'
+        });
+
+        // Make a loop for fetching data
+        setTimeout(function() {
+            setInterval(function() {
+                $.getJSON( "/data.pl", function( data ) {
+                    // Loop through the data
+                    $.each( data, function( key, val ) {
+                        // Update the relevant counter
+                        // FIXME Could this be made more dynamic?
+                        // TODO Move gracefully through all the numbers between
+                        // the old value and the new value. Currently we just
+                        // jump from one to the other.
+                        // TODO Do not display 00 at the start
+                        if ( key == 'loans' ) {
+                            loans.setValue( val );
+                        }
+                        if ( key == 'searches' ) {
+                            searches.setValue( val );
+                        }
+                    });
+                });
+            }, 5000); // Wait 5 seconds
+        });
+
+    });
+</script>
+
+</body>
+
+</html>

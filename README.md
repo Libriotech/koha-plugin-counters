@@ -4,7 +4,7 @@ Koha’s Plugin System (available in Koha 3.12+) allows for you to add additiona
 
 # Downloading
 
-From the [release page](https://github.com/bywatersolutions/koha-plugin-kitchen-sink/releases) you can download the relevant *.kpz file
+From the [release page](https://github.com/bywatersolutions/koha-plugin-counters/releases) you can download the relevant *.kpz file
 
 # Installing
 
@@ -19,3 +19,15 @@ To set up the Koha plugin system you must first make some changes to your instal
 * Restart your webserver
 
 Once set up is complete you will need to alter your UseKohaPlugins system preference. On the Tools page you will see the Tools Plugins and on the Reports page you will see the Reports Plugins.
+
+# Apache-config
+
+   ScriptAlias /counters.pl "/var/lib/koha/<instance>/plugins/Koha/Plugin/No/Libriotech/Counters/opac/script/counters.pl"
+   ScriptAlias /data.pl "/var/lib/koha/<instance>/plugins/Koha/Plugin/No/Libriotech/Counters/opac/script/data.pl"
+   Alias /counters "/var/lib/koha/<instance>/plugins/Koha/Plugin/No/Libriotech/Counters/opac/public/"
+   # The stanza below is needed for Apache 2.4+
+   <Directory /var/lib/koha/<instance>/plugins>
+      Options Indexes FollowSymLinks
+      AllowOverride None
+      Require all granted
+   </Directory>
